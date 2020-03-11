@@ -177,6 +177,20 @@ public class ErrorProneOptionsTest {
     assertThat(options.ignoreUnknownChecks()).isTrue();
   }
 
+  @Test
+  public void recognizesDisableWarningsInGenCode() {
+    ErrorProneOptions options =
+        ErrorProneOptions.processArgs(new String[] {"-XepDisableWarningsInGeneratedCode"});
+    assertThat(options.disableWarningsInGeneratedCode()).isTrue();
+  }
+
+  @Test
+  public void recognizesLargeCodeGen() {
+    ErrorProneOptions options =
+        ErrorProneOptions.processArgs(new String[] {"-XepIgnoreLargeCodeGenerators:"});
+    assertThat(options.ignoreLargeCodeGenerators()).isTrue();
+  }
+
   // ====================================================
 
   @Test
@@ -198,7 +212,7 @@ public class ErrorProneOptionsTest {
   public void recognizesPatch() {
     ErrorProneOptions options =
         ErrorProneOptions.processArgs(
-            new String[] {"-XepPatchLocation:IN_PLACE", "-XepPatchChecks:FooBar,MissingOverride"});
+            new String[] {"-XepPatchLocation:IN_PLACE", "-XepPatchChecks:FooBar,MissingOverride","-XepPatchLocation: "});
     assertThat(options.patchingOptions().doRefactor()).isTrue();
     assertThat(options.patchingOptions().inPlace()).isTrue();
     assertThat(options.patchingOptions().namedCheckers())

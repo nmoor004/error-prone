@@ -168,6 +168,17 @@ public class ErrorProneOptionsTest {
     assertThat(options.isIgnoreSuppressionAnnotations()).isTrue();
   }
 
+  // ===================================================
+
+  @Test
+  public void recognizesUnkCheckFlagCode() {
+    ErrorProneOptions options =
+        ErrorProneOptions.processArgs(new String[] {"-XepIgnoreUnknownCheckNames"});
+    assertThat(options.ignoreUnknownChecks()).isTrue();
+  }
+
+  // ====================================================
+
   @Test
   public void recognizesExcludedPaths() {
     ErrorProneOptions options =

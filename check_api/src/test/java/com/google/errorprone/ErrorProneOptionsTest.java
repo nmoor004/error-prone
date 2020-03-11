@@ -170,6 +170,21 @@ public class ErrorProneOptionsTest {
 
   // ===================================================
 
+  // @Test
+  // public void checkIsSupportedOption() {
+  //   ErrorProneOptions options =
+  //       ErrorProneOptions.processArgs(new String[] {"-XepIgnoreUnknownCheckNames"});
+  //   assertThat(options.ignoreUnknownChecks()).isTrue();
+  // }
+
+
+  // @Test
+  // public void recognizesEmpty() {
+  //   ErrorProneOptions options =
+  //       ErrorProneOptions.empty();
+  //   assertThat(options.isEmpty()).isTrue();
+  // }
+
   @Test
   public void recognizesUnkCheckFlagCode() {
     ErrorProneOptions options =

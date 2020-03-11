@@ -374,6 +374,9 @@ public class ErrorProneOptions {
     Builder builder = new Builder();
     for (String arg : args) {
       switch (arg) {
+        case IGNORE_LARGE_CODE_GENERATORS:
+          builder.setIgnoreLargeCodeGenerators(true);
+          break;
         case IGNORE_SUPPRESSION_ANNOTATIONS:
           builder.setIgnoreSuppressionAnnotations(true);
           break;

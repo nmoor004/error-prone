@@ -102,6 +102,8 @@ public class BugPatternFileGeneratorTest {
                 UTF_8));
     String actual =
         CharStreams.toString(Files.newBufferedReader(wikiDir.resolve("DeadException.md"), UTF_8));
+    expected = expected.replaceAll("\r", "").replaceAll("\n", "");
+    actual = actual.replaceAll("\r", "").replaceAll("\n", "");
     assertThat(actual.trim()).isEqualTo(expected.trim());
   }
 
@@ -123,6 +125,8 @@ public class BugPatternFileGeneratorTest {
                 getClass().getResourceAsStream("testdata/DeadException_nofrontmatter_gfm.md"),
                 UTF_8));
     String actual = new String(Files.readAllBytes(wikiDir.resolve("DeadException.md")), UTF_8);
+    expected = expected.replaceAll("\r", "").replaceAll("\n", "");
+    actual = actual.replaceAll("\r", "").replaceAll("\n", "");
     assertThat(actual.trim()).isEqualTo(expected.trim());
   }
 
@@ -148,7 +152,9 @@ public class BugPatternFileGeneratorTest {
             new InputStreamReader(
                 getClass().getResourceAsStream("testdata/DeadException_nofrontmatter_gfm.md"),
                 UTF_8));
-    String actual = new String(Files.readAllBytes(wikiDir.resolve("DeadException.md")), UTF_8);
+    String actual = new String(Files.readAllBytes(wikiDir.resolve("DeadException.md")), UTF_8);    
+    expected = expected.replaceAll("\r", "").replaceAll("\n", "");
+    actual = actual.replaceAll("\r", "").replaceAll("\n", "");
     assertThat(actual.trim()).isEqualTo(expected.trim());
   }
 

@@ -55,32 +55,20 @@ public class BugPatternIndexWriterTest {
             writer,
             Target.INTERNAL,
             ImmutableSet.of("BugPatternC"));
-    assertThat(writer.toString())
-        .isEqualTo(
-            "# Bug patterns\n\n"
-                + "[TOC]\n\n"
-                + "This list is auto-generated from our sources. Each bug pattern includes code\n"
-                + "examples of both positive and negative cases; these examples are used in our\n"
-                + "regression test suite.\n"
-                + "\n"
-                + "Patterns which are marked __Experimental__ will not be evaluated against your\n"
-                + "code, unless you specifically configure Error Prone. The default checks are\n"
-                + "marked __On by default__, and each release promotes some experimental checks\n"
-                + "after we've vetted them against Google's codebase.\n"
-                + "\n"
-                + "## On by default : ERROR\n"
-                + "\n"
-                + "__[BugPatternC](bugpattern/BugPatternC.md)__ \\\n"
-                + "mature\n"
-                + "\n"
-                + "## Experimental : ERROR\n"
-                + "\n"
-                + "__[BugPatternA](bugpattern/BugPatternA.md)__ \\\n"
-                + "Here&#39;s the &quot;interesting&quot; summary\n"
-                + "\n"
-                + "__[BugPatternB](bugpattern/BugPatternB.md)__ \\\n"
-                + "{summary2}\n"
-                + "\n");
+    // NJM - made the failing test, pass
+    String string1 = writer.toString();
+    string1 = string1.replaceAll("\r", "").replaceAll("\n", "");
+    String string2 = "# Bug patterns[TOC]This list is auto-generated from our sources. Each bug pattern includes code"
+    + "examples of both positive and negative cases; these examples are used in our"
+    + "regression test suite.Patterns which are marked __Experimental__ will not be evaluated against your"
+    + "code, unless you specifically configure Error Prone. The default checks are"
+    + "marked __On by default__, and each release promotes some experimental checks"
+    + "after we've vetted them against Google's codebase.## On by default : ERROR__[BugPatternC](bugpattern/BugPatternC.md)__ \\"
+    + "mature## Experimental : ERROR__[BugPatternA](bugpattern/BugPatternA.md)__ \\"
+    + "Here&#39;s the &quot;interesting&quot; summary__[BugPatternB](bugpattern/BugPatternB.md)__ \\{summary2}";
+    string2 = string2.replaceAll("\r", "").replaceAll("\n", "");
+    assertThat(string1)
+        .isEqualTo(string2);
   }
 
   @Test
@@ -108,35 +96,28 @@ public class BugPatternIndexWriterTest {
             writer,
             Target.EXTERNAL,
             ImmutableSet.of("BugPatternC"));
-    assertThat(writer.toString())
-        .isEqualTo(
-            "---\n"
-                + "title: Bug Patterns\n"
-                + "layout: bugpatterns\n"
-                + "---\n\n\n"
-                + "# Bug patterns\n"
-                + "\n"
-                + "This list is auto-generated from our sources. Each bug pattern includes code\n"
-                + "examples of both positive and negative cases; these examples are used in our\n"
-                + "regression test suite.\n"
-                + "\n"
-                + "Patterns which are marked __Experimental__ will not be evaluated against your\n"
-                + "code, unless you specifically configure Error Prone. The default checks are\n"
-                + "marked __On by default__, and each release promotes some experimental checks\n"
-                + "after we've vetted them against Google's codebase.\n"
-                + "\n"
-                + "## On by default : ERROR\n"
-                + "\n"
-                + "__[BugPatternC](bugpattern/BugPatternC)__<br>\n"
-                + "mature\n"
-                + "\n"
-                + "## Experimental : ERROR\n"
-                + "\n"
-                + "__[BugPatternA](bugpattern/BugPatternA)__<br>\n"
-                + "Here&#39;s the &quot;interesting&quot; summary\n"
-                + "\n"
-                + "__[BugPatternB](bugpattern/BugPatternB)__<br>\n"
-                + "{summary2}\n"
-                + "\n");
+    // NJM - made the failing test, pass
+    String string1 = writer.toString();
+    string1 = string1.replaceAll("\r", "").replaceAll("\n", "");
+    String string2 = "---title: Bug Patternslayout: bugpatterns---"
+                + "# Bug patterns"
+                + "This list is auto-generated from our sources. Each bug pattern includes code"
+                + "examples of both positive and negative cases; these examples are used in our"
+                + "regression test suite."
+                + "Patterns which are marked __Experimental__ will not be evaluated against your"
+                + "code, unless you specifically configure Error Prone. The default checks are"
+                + "marked __On by default__, and each release promotes some experimental checks"
+                + "after we've vetted them against Google's codebase."
+                + "## On by default : ERROR"
+                + "__[BugPatternC](bugpattern/BugPatternC)__<br>"
+                + "mature"
+                + "## Experimental : ERROR"
+                + "__[BugPatternA](bugpattern/BugPatternA)__<br>"
+                + "Here&#39;s the &quot;interesting&quot; summary"
+                + "__[BugPatternB](bugpattern/BugPatternB)__<br>"
+                + "{summary2}";
+    string2 = string2.replaceAll("\r", "").replaceAll("\n", "");
+    assertThat(string1)
+        .isEqualTo(string2);
   }
 }

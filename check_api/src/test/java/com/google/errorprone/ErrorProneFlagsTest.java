@@ -101,23 +101,23 @@ public final class ErrorProneFlagsTest {
 
   // ================================================================ NJM: attempted to test the getSet function
 
-  // @Test
-  // public void parseAndGetSet() {
-  //   ErrorProneFlags flags =
-  //       ErrorProneFlags.builder()
-  //           .parseFlag("-XepOpt:ArgA=1,2,3")
-  //           .parseFlag("-XepOpt:ArgB=4,")
-  //           .parseFlag("-XepOpt:ArgC=5,,,6")
-  //           .parseFlag("-XepOpt:ArgD=7")
-  //           .parseFlag("-XepOpt:ArgE=")
-  //           .build();
-  //   assertThat(flags.getSet("ArgA")).hasValue(ImmutableList.of("1", "2", "3"));
-  //   assertThat(flags.getSet("ArgB")).hasValue(ImmutableList.of("4", ""));
-  //   assertThat(flags.getSet("ArgC")).hasValue(ImmutableList.of("5", "", "", "6"));
-  //   assertThat(flags.getSet("ArgD")).hasValue(ImmutableList.of("7"));
-  //   assertThat(flags.getSet("ArgE")).hasValue(ImmutableList.of(""));
-  //   assertThat(flags.getSet("absent")).isEmpty();
-  // }
+  @Test
+  public void parseAndGetSet() {
+    ErrorProneFlags flags =
+        ErrorProneFlags.builder()
+            .parseFlag("-XepOpt:ArgA=1,2,3")
+            .parseFlag("-XepOpt:ArgB=4,")
+            .parseFlag("-XepOpt:ArgC=5,,,6")
+            .parseFlag("-XepOpt:ArgD=7")
+            .parseFlag("-XepOpt:ArgE=")
+            .build();
+    assertThat(flags.getSet("ArgA")).hasValue(ImmutableSet.of("1", "2", "3"));
+    assertThat(flags.getSet("ArgB")).hasValue(ImmutableSet.of("4", ""));
+    assertThat(flags.getSet("ArgC")).hasValue(ImmutableSet.of("5", "", "", "6"));
+    assertThat(flags.getSet("ArgD")).hasValue(ImmutableSet.of("7"));
+    assertThat(flags.getSet("ArgE")).hasValue(ImmutableSet.of(""));
+    assertThat(flags.getSet("absent")).isEmpty();
+  }
 
   // =================================================================
 

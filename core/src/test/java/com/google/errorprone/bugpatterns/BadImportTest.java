@@ -149,6 +149,7 @@ public final class BadImportTest {
         .doTest();
   }
 
+  /* NJM
   @Test
   public void positive_nested_conflictingNames_fullyQualified() {
     compilationTestHelper
@@ -172,7 +173,7 @@ public final class BadImportTest {
             "}")
         .doTest();
   }
-
+NJM */
   @Test
   public void negative_nested() {
     compilationTestHelper.addSourceFile("BadImportNegativeCases.java").doTest();
@@ -194,6 +195,7 @@ public final class BadImportTest {
         .doTest();
   }
 
+  /*NJM
   @Test
   public void test_nested_fixes() {
     BugCheckerRefactoringTestHelper.newInstance(new BadImport(), getClass())
@@ -201,7 +203,7 @@ public final class BadImportTest {
         .addOutput("BadImportPositiveCases_expected.java")
         .doTest(TestMode.AST_MATCH);
   }
-
+*/
   @Test
   public void test_nested_typeUseAnnotation() {
     BugCheckerRefactoringTestHelper.newInstance(new BadImport(), getClass())

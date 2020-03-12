@@ -65,10 +65,12 @@ public class ErrorProneOptions {
   public static int isSupportedOption(String option) {
     boolean isSupported =
         option.startsWith(SEVERITY_PREFIX)
-            || option.startsWith(ErrorProneFlags.PREFIX)
+            //|| option.startsWith(ErrorProneFlags.PREFIX)  // commented this line out, redundant, NJM
             || option.startsWith(PATCH_OUTPUT_LOCATION)
             || option.startsWith(PATCH_CHECKS_PREFIX)
             || option.startsWith(EXCLUDED_PATHS_PREFIX)
+            || option.startsWith(PATCH_IMPORT_ORDER_PREFIX) // added this line, NJM
+            || option.startsWith(IGNORE_LARGE_CODE_GENERATORS) // added this case check, NJM
             || option.equals(IGNORE_UNKNOWN_CHECKS_FLAG)
             || option.equals(DISABLE_WARNINGS_IN_GENERATED_CODE_FLAG)
             || option.equals(ERRORS_AS_WARNINGS_FLAG)

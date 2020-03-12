@@ -18,6 +18,7 @@ package com.google.errorprone;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertThrows;
+import org.junit.Assert;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.errorprone.ErrorProneOptions.Severity;
@@ -168,14 +169,39 @@ public class ErrorProneOptionsTest {
     assertThat(options.isIgnoreSuppressionAnnotations()).isTrue();
   }
 
-  // ===================================================
+  // =================================================== NJM
 
-  // @Test
-  // public void checkIsSupportedOption() {
-  //   ErrorProneOptions options =
-  //       ErrorProneOptions.processArgs(new String[] {"-XepIgnoreUnknownCheckNames"});
-  //   assertThat(options.ignoreUnknownChecks()).isTrue();
-  // }
+  @Test
+  public void checkIsSupportedOption() {
+    String[] supportedTypes = new String[13];
+
+    supportedTypes[0] = "-XepIgnoreUnknownCheckNames";
+    supportedTypes[1] = "-XepDisableWarningsInGeneratedCode";
+    supportedTypes[2] = "-XepAllErrorsAsWarnings";
+    supportedTypes[3] = "-XepAllDisabledChecksAsWarnings";
+    supportedTypes[4] = "-XepDisableAllChecks";
+    supportedTypes[5] = "-XepIgnoreSuppressionAnnotations";
+    supportedTypes[6] = "-XepCompilingTestOnlyCode";
+    supportedTypes[7] = "-Xep:";
+    supportedTypes[8] = "-XepPatchChecks:";
+    supportedTypes[9] = "-XepPatchLocation:";
+    supportedTypes[10] = "-XepPatchImportOrder:";
+    supportedTypes[11] = "-XepExcludedPaths:";
+    supportedTypes[12] = "-XepIgnoreLargeCodeGenerators:";
+
+    for (int i = 0; i<supportedTypes.length; i++) {
+      int num = ErrorProneOptions.isSupportedOption(supportedTypes[i]);
+      Assert.assertEquals("Supported", 0, num);
+      }
+  }
+
+  @Test
+  public void checkCompilingTestOnly() {
+    String supportedTypes = "-XepNathanTheCoffeeAddict";
+
+    int num = ErrorProneOptions.isSupportedOption(supportedTypes);
+    Assert.assertEquals("Supported", -1, num);
+  }
 
 
   // @Test

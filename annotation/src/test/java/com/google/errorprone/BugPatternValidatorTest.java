@@ -33,7 +33,7 @@ public class BugPatternValidatorTest {
 
   private @interface CustomSuppressionAnnotation2 {}
 
-  @Test
+  @Test // NJM - tests a basic bug pattern
   public void basicBugPattern() throws Exception {
     @BugPattern(
         name = "BasicBugPattern",
@@ -42,9 +42,37 @@ public class BugPatternValidatorTest {
         severity = SeverityLevel.ERROR)
     final class BugPatternTestClass {}
 
+    BugPatternValidator bpv = new BugPatternValidator();  // added this line to increase test coverage
+
     BugPattern annotation = BugPatternTestClass.class.getAnnotation(BugPattern.class);
-    BugPatternValidator.validate(annotation);
+    bpv.validate(annotation); // modified for the test to run with the previously created BugPatternValidator
   }
+
+  // ================================================================ NJM
+
+  @Test(expected = ValidationException.class)
+  public void nullPattern() throws Exception {
+    @BugPattern(
+        name = "LinkTypeNoneAndNoLink",
+        summary = "linkType none and no link",
+        explanation = "linkType none and no link",
+        severity = SeverityLevel.ERROR,
+        linkType = LinkType.NONE)
+    final class BugPatternTestClass {}
+
+    BugPattern annotation = BugPatternTestClass.class.getAnnotation(BugPattern.class);
+    BugPatternValidator.validate(null);
+  }
+
+  // Attempted to get 100% code coverage.
+  // @Test
+  // public void displayingInfo() {
+  //   ProvidesFix pf = ProvidesFix.UNSPECIFIED;
+  //
+  //   assertThat(pf.displayInfo()).isEqualTo("");
+  // }
+
+    // ================================================================
 
   @Test
   public void linkTypeNoneAndNoLink() throws Exception {

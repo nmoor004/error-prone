@@ -160,7 +160,7 @@ public final class ErrorProneFlags implements Serializable {
    *
    * <p>(note: empty strings included, e.g. {@code "-XepOpt:Set=,1,,1,2," => ["","1","2"]})
    */
-  public Optional<Set<String>> getSet(String key) {
+  public Optional<Set<String>> getSet(String key) { // NJM: getSet function is not working properly, and therefore we cannot test it.
     return this.get(key).map(v -> ImmutableSet.copyOf(Splitter.on(',').split(v)));
   }
 

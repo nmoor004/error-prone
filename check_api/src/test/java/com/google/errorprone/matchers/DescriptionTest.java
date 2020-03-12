@@ -124,4 +124,15 @@ public class DescriptionTest {
     assertThat(description.getMessage())
         .isEqualTo("[CustomLinkChecker] custom message\n  (see https://www.google.com/)");
   }
+
+  @Test(expected = IllegalArgumentException.class)  // NJM: added a test case for exception handling
+  public void testEmptyMessage(){
+    Description description =
+        BugChecker.buildDescriptionFromChecker(
+                (DiagnosticPosition) new MockTree(), new CustomLinkChecker())
+            .setMessage(null)
+            .build();
+    assertThat(description.getMessage())
+        .isEqualTo("message must not be null");
+  }
 }

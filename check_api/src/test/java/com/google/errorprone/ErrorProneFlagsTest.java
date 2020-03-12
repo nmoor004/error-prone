@@ -99,6 +99,28 @@ public final class ErrorProneFlagsTest {
     assertThat(flags.getList("absent")).isEmpty();
   }
 
+  // ================================================================ NJM: attempted to test the getSet function
+
+  // @Test
+  // public void parseAndGetSet() {
+  //   ErrorProneFlags flags =
+  //       ErrorProneFlags.builder()
+  //           .parseFlag("-XepOpt:ArgA=1,2,3")
+  //           .parseFlag("-XepOpt:ArgB=4,")
+  //           .parseFlag("-XepOpt:ArgC=5,,,6")
+  //           .parseFlag("-XepOpt:ArgD=7")
+  //           .parseFlag("-XepOpt:ArgE=")
+  //           .build();
+  //   assertThat(flags.getSet("ArgA")).hasValue(ImmutableList.of("1", "2", "3"));
+  //   assertThat(flags.getSet("ArgB")).hasValue(ImmutableList.of("4", ""));
+  //   assertThat(flags.getSet("ArgC")).hasValue(ImmutableList.of("5", "", "", "6"));
+  //   assertThat(flags.getSet("ArgD")).hasValue(ImmutableList.of("7"));
+  //   assertThat(flags.getSet("ArgE")).hasValue(ImmutableList.of(""));
+  //   assertThat(flags.getSet("absent")).isEmpty();
+  // }
+
+  // =================================================================
+
   @Test
   public void plus_secondShouldOverwriteFirst() {
     ErrorProneFlags flags1 =
